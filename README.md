@@ -47,9 +47,9 @@ running a new build:
 
 ## install
 
-repo: https://copr-be.cloud.fedoraproject.org/results/eduardocerqueira/mypublicip/fedora-24-x86_64/00474191-mypublicip/
+**repo:** https://copr-be.cloud.fedoraproject.org/results/eduardocerqueira/mypublicip/fedora-24-x86_64/00474191-mypublicip/
 
-sudo dnf install https://copr-be.cloud.fedoraproject.org/results/eduardocerqueira/mypublicip/fedora-24-x86_64/00474191-mypublicip/mypublicip-0.0.1-1.x86_64.rpm
+	$ sudo dnf install https://copr-be.cloud.fedoraproject.org/results/eduardocerqueira/mypublicip/fedora-24-x86_64/00474191-mypublicip/mypublicip-0.0.1-1.x86_64.rpm
 
 
 ## Guide
@@ -61,7 +61,8 @@ the default location for this file can be override if you use the arg --conf and
  * .ip.txt
  * history.txt
 
-	[eduardo@dev ~]$ cat ~/.mypublicip/history.txt
+
+	$ cat ~/.mypublicip/history.txt
 	2016-11-07 17:05:12.896891 | 64.117.243.216
 	2016-11-07 17:06:38.525302 | 63.117.215.88
 	2016-11-07 17:07:44.854575 | 200.147.41.208
