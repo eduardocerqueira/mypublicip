@@ -10,7 +10,7 @@ Short version for mypublicip
 
 # replace these variables
 _mail_from = "my-public-ip@server.com"
-_mail_to = ["eduardomcerqueira@gmail.com", "sergio.mejia@mojix.com"]
+_mail_to = ["user1@gmail.com", "user2@gmail.com"]
 _mail_subject = "my new public IP"
 _server = "smtp.gmail.com"
 _port = 587
