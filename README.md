@@ -61,6 +61,7 @@ the default location for this file can be override if you use the arg --conf and
  * .ip.txt
  * history.txt
 
+listing content:
 
 	$ cat ~/.mypublicip/history.txt
 	2016-11-07 17:05:12.896891 | 64.117.243.216
