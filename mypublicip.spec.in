@@ -1,0 +1,42 @@
+Name:		mypublicip
+Version:	@RPM_VERSION@
+Release:	@RPM_RELEASE@
+Summary:	mypublicip script to notify when your your public IP is renewed by your ISP
+Group:		Applications/Tools
+License:	GPL3+
+Source0:	http://github.com/eduardocerqueira/mypublicip/%{name}-%{version}.tar.gz
+
+BuildRequires:  python-setuptools
+BuildRequires:  python-sphinx
+BuildRequires:  python-nose
+Requires:       python
+Requires:		python-requests
+Requires:		python-mailer
+
+%global debug_package %{nil}
+
+%description
+mypublicip is a CLI python to notify when your public IP is changed/renewed by your ISP.
+
+%prep
+%setup -q -n %{name}
+
+%build
+%{__python} setup.py build
+
+%install
+%{__python} setup.py install -O1 --skip-build --root %{buildroot}
+mkdir -p %{buildroot}/%{_mandir}/man1
+cp mypublicip.1 %{buildroot}/%{_mandir}/man1/mypublicip.1
+
+%files
+%defattr(755,root,root,755)
+%{python_sitelib}/mypublicip*
+%attr (755,root,root)/usr/bin/mypublicip
+%doc README.md
+%doc AUTHORS
+%{_mandir}/man1/mypublicip.1.gz
+
+%changelog
+* Sun Oct 30 2016 Eduardo Cerqueira <eduardomcerqueira@gmail.com> - 0.0.1
+- initial build

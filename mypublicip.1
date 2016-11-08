@@ -1,0 +1,428 @@
+.\" Man page generated from reStructuredText.
+.
+.TH "MYPUBLICIP" "1" "Nov 07, 2016" "0.0.1" "mypublicip"
+.SH NAME
+mypublicip \- mypublicip Documentation
+.
+.nr rst2man-indent-level 0
+.
+.de1 rstReportMargin
+\\$1 \\n[an-margin]
+level \\n[rst2man-indent-level]
+level margin: \\n[rst2man-indent\\n[rst2man-indent-level]]
+-
+\\n[rst2man-indent0]
+\\n[rst2man-indent1]
+\\n[rst2man-indent2]
+..
+.de1 INDENT
+.\" .rstReportMargin pre:
+. RS \\$1
+. nr rst2man-indent\\n[rst2man-indent-level] \\n[an-margin]
+. nr rst2man-indent-level +1
+.\" .rstReportMargin post:
+..
+.de UNINDENT
+. RE
+.\" indent \\n[an-margin]
+.\" old: \\n[rst2man-indent\\n[rst2man-indent-level]]
+.nr rst2man-indent-level -1
+.\" new: \\n[rst2man-indent\\n[rst2man-indent-level]]
+.in \\n[rst2man-indent\\n[rst2man-indent-level]]u
+..
+.sp
+Contents:
+.SH SETUP DEVELOPMENT ENVIRONMENT
+.SS Source Code
+.INDENT 0.0
+.INDENT 3.5
+.sp
+.nf
+.ft C
+$ git clone https://github.com/eduardocerqueira/mypublicip.git
+.ft P
+.fi
+.UNINDENT
+.UNINDENT
+.SS Installation
+.SS Option 1: Start it on RPM
+.sp
+For development purposes, install following dependencies:
+.INDENT 0.0
+.IP \(bu 2
+python = 2.7
+.IP \(bu 2
+python\-pip
+.IP \(bu 2
+Run the following
+.INDENT 2.0
+.INDENT 3.5
+.sp
+.nf
+.ft C
+$ cd mypublicip
+$ pip install \-r requirements/devel.txt
+$ pip install \-r requirements/production.txt
+.ft P
+.fi
+.UNINDENT
+.UNINDENT
+.UNINDENT
+.SS Option 2: Start it on Docker
+.sp
+\fBin progress\fP
+.INDENT 0.0
+.IP \(bu 2
+Install Docker: see the \fI\%official installation
+guide\fP for details. Generally, it
+might be enough to run install it with \fByum\fP and the run it.
+.INDENT 2.0
+.INDENT 3.5
+.sp
+.nf
+.ft C
+$ sudo yum install docker\-engine
+$ sudo service docker start
+.ft P
+.fi
+.UNINDENT
+.UNINDENT
+.IP \(bu 2
+for OS with SELINUX capabilities remember to setenforce 0 before start your docker service
+.IP \(bu 2
+Use this command to build a new image
+.INDENT 2.0
+.INDENT 3.5
+.sp
+.nf
+.ft C
+$ sudo docker build \-t <YOUR_NAME>/mypublicip <the directory your Dockerfile is located>
+.ft P
+.fi
+.UNINDENT
+.UNINDENT
+.IP \(bu 2
+Run the container
+.INDENT 2.0
+.INDENT 3.5
+.sp
+.nf
+.ft C
+$ docker run \-it \-d \-P <YOUR_NAME>/mypublicip /bin/bash
+$ mypublicip \-\-help
+.ft P
+.fi
+.UNINDENT
+.UNINDENT
+.UNINDENT
+.SH BUILD
+.SS From your local machine
+.INDENT 0.0
+.INDENT 3.5
+$ cd mypublicip
+$ make
+.sp
+Usage: make <target> where <target> is one of
+.sp
+clean     clean temp files from local workspace
+doc       generate sphinx documentation and man pages
+test      run unit tests locally
+tarball   generate tarball of project
+rpm       build source codes and generate rpm file
+srpm      generate SRPM file
+all       clean test doc rpm
+flake8    check Python style based on flake8
+.sp
+$ make rpm
+.sp
+#rpmdev\-setuptree into project folder
+make \-C docs/ html
+make[1]: Entering directory \(aq/home/eduardo/git/mypublicip/docs\(aq
+sphinx\-build \-b html \-d build/doctrees   source build/html
+Running Sphinx v1.4.8
+loading pickled environment... done
+building [mo]: targets for 0 po files that are out of date
+building [html]: targets for 2 source files that are out of date
+updating environment: 1 added, 2 changed, 1 removed
+reading sources... [100%] index
+/home/eduardo/git/mypublicip/docs/source/index.rst:4: WARNING: Title underline too short.
+.sp
+/home/eduardo/git/mypublicip/docs/source/index.rst:8: WARNING: toctree contains reference to nonexisting document u\(aqinstall\(aq
+/home/eduardo/git/mypublicip/docs/source/index.rst:8: WARNING: toctree contains reference to nonexisting document u\(aqguide\(aq
+looking for now\-outdated files... none found
+pickling environment... done
+checking consistency... done
+preparing documents... done
+writing output... [100%] index
+generating indices... genindex
+writing additional pages... search
+copying static files... WARNING: html_static_path entry u\(aq/home/eduardo/git/mypublicip/docs/source/_static\(aq does not exist
+done
+copying extra files... done
+dumping search index in English (code: en) ... done
+dumping object inventory... done
+build succeeded, 4 warnings.
+.sp
+Build finished. The HTML pages are in build/html.
+make[1]: Leaving directory \(aq/home/eduardo/git/mypublicip/docs\(aq
+make \-C docs/ man
+make[1]: Entering directory \(aq/home/eduardo/git/mypublicip/docs\(aq
+sphinx\-build \-b man \-d build/doctrees   source build/man
+Running Sphinx v1.4.8
+loading pickled environment... done
+building [mo]: targets for 0 po files that are out of date
+building [man]: all manpages
+updating environment: 0 added, 1 changed, 0 removed
+reading sources... [100%] index
+/home/eduardo/git/mypublicip/docs/source/index.rst:4: WARNING: Title underline too short.
+.sp
+/home/eduardo/git/mypublicip/docs/source/index.rst:8: WARNING: toctree contains reference to nonexisting document u\(aqinstall\(aq
+/home/eduardo/git/mypublicip/docs/source/index.rst:8: WARNING: toctree contains reference to nonexisting document u\(aqguide\(aq
+looking for now\-outdated files... none found
+pickling environment... done
+checking consistency... done
+writing... mypublicip.1 { development build }
+build succeeded, 3 warnings.
+.sp
+Build finished. The manual pages are in build/man.
+make[1]: Leaving directory \(aq/home/eduardo/git/mypublicip/docs\(aq
+cp docs/build/man/mypublicip.1 mypublicip.1
+sed 
+.INDENT 0.0
+.INDENT 3.5
+\-e \(aqs/@RPM_VERSION@/0.0.1/g\(aq \-e \(aqs/@RPM_RELEASE@/1/g\(aq < mypublicip.spec.in > /home/eduardo/git/mypublicip/rpmbuild/SPECS/mypublicip.spec
+.UNINDENT
+.UNINDENT
+.sp
+git ls\-files | tar \-\-transform=\(aqs|^|mypublicip/
+.nf
+|
+.fi
+\(aq \-\-files\-from /proc/self/fd/0 \-czf /home/eduardo/git/mypublicip/rpmbuild/SOURCES/mypublicip\-0.0.1.tar.gz /home/eduardo/git/mypublicip/rpmbuild/SPECS/mypublicip.spec
+tar: Removing leading 
+.nf
+\(ga
+.fi
+/\(aq from member names
+rpmbuild \-\-define="_topdir /home/eduardo/git/mypublicip/rpmbuild" \-\-define "_specdir /home/eduardo/git/mypublicip/rpmbuild/SPECS" \-ts /home/eduardo/git/mypublicip/rpmbuild/SOURCES/mypublicip\-0.0.1.tar.gz
+Wrote: /home/eduardo/git/mypublicip/rpmbuild/SRPMS/mypublicip\-0.0.1\-1.src.rpm
+rpmbuild \-\-define="_topdir /home/eduardo/git/mypublicip/rpmbuild" \-\-rebuild /home/eduardo/git/mypublicip/rpmbuild/SRPMS/mypublicip\-0.0.1\-1.src.rpm
+Installing /home/eduardo/git/mypublicip/rpmbuild/SRPMS/mypublicip\-0.0.1\-1.src.rpm
+Executing(%prep): /bin/sh \-e /var/tmp/rpm\-tmp.D7DQcZ
++ umask 022
++ cd /home/eduardo/git/mypublicip/rpmbuild/BUILD
++ cd /home/eduardo/git/mypublicip/rpmbuild/BUILD
++ rm \-rf mypublicip
++ /usr/bin/gzip \-dc /home/eduardo/git/mypublicip/rpmbuild/SOURCES/mypublicip\-0.0.1.tar.gz
++ /usr/bin/tar \-xof \-
++ STATUS=0
++ \(aq[\(aq 0 \-ne 0 \(aq]\(aq
++ cd mypublicip
++ /usr/bin/chmod \-Rf a+rX,u+w,g\-w,o\-w .
++ exit 0
+Executing(%build): /bin/sh \-e /var/tmp/rpm\-tmp.zEczn9
++ umask 022
++ cd /home/eduardo/git/mypublicip/rpmbuild/BUILD
++ cd mypublicip
++ /usr/bin/python setup.py build
+running build
+running build_py
+creating build
+creating build/lib
+creating build/lib/mypublicip
+copying mypublicip/__init__.py \-> build/lib/mypublicip
+copying mypublicip/action.py \-> build/lib/mypublicip
+creating build/lib/mypublicip/util
+copying mypublicip/util/__init__.py \-> build/lib/mypublicip/util
+copying mypublicip/util/decorators.py \-> build/lib/mypublicip/util
+copying mypublicip/util/logger.py \-> build/lib/mypublicip/util
+creating build/lib/mypublicip/notifier
+copying mypublicip/notifier/__init__.py \-> build/lib/mypublicip/notifier
+creating build/lib/mypublicip/notifier/smtp
+copying mypublicip/notifier/smtp/__init__.py \-> build/lib/mypublicip/notifier/smtp
+running egg_info
+creating mypublicip.egg\-info
+writing requirements to mypublicip.egg\-info/requires.txt
+writing mypublicip.egg\-info/PKG\-INFO
+writing top\-level names to mypublicip.egg\-info/top_level.txt
+writing dependency_links to mypublicip.egg\-info/dependency_links.txt
+writing entry points to mypublicip.egg\-info/entry_points.txt
+writing manifest file \(aqmypublicip.egg\-info/SOURCES.txt\(aq
+reading manifest file \(aqmypublicip.egg\-info/SOURCES.txt\(aq
+reading manifest template \(aqMANIFEST.in\(aq
+warning: no files found matching \(aqdocs/build/man/mypublicip.1\(aq
+warning: no previously\-included files matching \(aq*\(aq found under directory \(aqtests\(aq
+warning: no previously\-included files matching \(aq__pycache__\(aq found under directory \(aq*\(aq
+warning: no previously\-included files matching \(aq\fI\&.orig\(aq found under directory \(aq\fP\(aq
+warning: no previously\-included files matching \(aq*\(aq found under directory \(aqdocs\(aq
+warning: no previously\-included files matching \(aq.pyc\(aq found anywhere in distribution
+warning: no previously\-included files matching \(aq.pyo\(aq found anywhere in distribution
+writing manifest file \(aqmypublicip.egg\-info/SOURCES.txt\(aq
++ exit 0
+Executing(%install): /bin/sh \-e /var/tmp/rpm\-tmp.rIOyjl
++ umask 022
++ cd /home/eduardo/git/mypublicip/rpmbuild/BUILD
++ \(aq[\(aq /home/eduardo/git/mypublicip/rpmbuild/BUILDROOT/mypublicip\-0.0.1\-1.x86_64 \(aq!=\(aq / \(aq]\(aq
++ rm \-rf /home/eduardo/git/mypublicip/rpmbuild/BUILDROOT/mypublicip\-0.0.1\-1.x86_64
+++ dirname /home/eduardo/git/mypublicip/rpmbuild/BUILDROOT/mypublicip\-0.0.1\-1.x86_64
++ mkdir \-p /home/eduardo/git/mypublicip/rpmbuild/BUILDROOT
++ mkdir /home/eduardo/git/mypublicip/rpmbuild/BUILDROOT/mypublicip\-0.0.1\-1.x86_64
++ cd mypublicip
++ /usr/bin/python setup.py install \-O1 \-\-skip\-build \-\-root /home/eduardo/git/mypublicip/rpmbuild/BUILDROOT/mypublicip\-0.0.1\-1.x86_64
+running install
+running install_lib
+creating /home/eduardo/git/mypublicip/rpmbuild/BUILDROOT/mypublicip\-0.0.1\-1.x86_64/usr
+creating /home/eduardo/git/mypublicip/rpmbuild/BUILDROOT/mypublicip\-0.0.1\-1.x86_64/usr/lib
+creating /home/eduardo/git/mypublicip/rpmbuild/BUILDROOT/mypublicip\-0.0.1\-1.x86_64/usr/lib/python2.7
+creating /home/eduardo/git/mypublicip/rpmbuild/BUILDROOT/mypublicip\-0.0.1\-1.x86_64/usr/lib/python2.7/site\-packages
+creating /home/eduardo/git/mypublicip/rpmbuild/BUILDROOT/mypublicip\-0.0.1\-1.x86_64/usr/lib/python2.7/site\-packages/mypublicip
+creating /home/eduardo/git/mypublicip/rpmbuild/BUILDROOT/mypublicip\-0.0.1\-1.x86_64/usr/lib/python2.7/site\-packages/mypublicip/util
+copying build/lib/mypublicip/util/__init__.py \-> /home/eduardo/git/mypublicip/rpmbuild/BUILDROOT/mypublicip\-0.0.1\-1.x86_64/usr/lib/python2.7/site\-packages/mypublicip/util
+copying build/lib/mypublicip/util/decorators.py \-> /home/eduardo/git/mypublicip/rpmbuild/BUILDROOT/mypublicip\-0.0.1\-1.x86_64/usr/lib/python2.7/site\-packages/mypublicip/util
+copying build/lib/mypublicip/util/logger.py \-> /home/eduardo/git/mypublicip/rpmbuild/BUILDROOT/mypublicip\-0.0.1\-1.x86_64/usr/lib/python2.7/site\-packages/mypublicip/util
+copying build/lib/mypublicip/__init__.py \-> /home/eduardo/git/mypublicip/rpmbuild/BUILDROOT/mypublicip\-0.0.1\-1.x86_64/usr/lib/python2.7/site\-packages/mypublicip
+copying build/lib/mypublicip/action.py \-> /home/eduardo/git/mypublicip/rpmbuild/BUILDROOT/mypublicip\-0.0.1\-1.x86_64/usr/lib/python2.7/site\-packages/mypublicip
+creating /home/eduardo/git/mypublicip/rpmbuild/BUILDROOT/mypublicip\-0.0.1\-1.x86_64/usr/lib/python2.7/site\-packages/mypublicip/notifier
+copying build/lib/mypublicip/notifier/__init__.py \-> /home/eduardo/git/mypublicip/rpmbuild/BUILDROOT/mypublicip\-0.0.1\-1.x86_64/usr/lib/python2.7/site\-packages/mypublicip/notifier
+creating /home/eduardo/git/mypublicip/rpmbuild/BUILDROOT/mypublicip\-0.0.1\-1.x86_64/usr/lib/python2.7/site\-packages/mypublicip/notifier/smtp
+copying build/lib/mypublicip/notifier/smtp/__init__.py \-> /home/eduardo/git/mypublicip/rpmbuild/BUILDROOT/mypublicip\-0.0.1\-1.x86_64/usr/lib/python2.7/site\-packages/mypublicip/notifier/smtp
+byte\-compiling /home/eduardo/git/mypublicip/rpmbuild/BUILDROOT/mypublicip\-0.0.1\-1.x86_64/usr/lib/python2.7/site\-packages/mypublicip/util/__init__.py to __init__.pyc
+byte\-compiling /home/eduardo/git/mypublicip/rpmbuild/BUILDROOT/mypublicip\-0.0.1\-1.x86_64/usr/lib/python2.7/site\-packages/mypublicip/util/decorators.py to decorators.pyc
+byte\-compiling /home/eduardo/git/mypublicip/rpmbuild/BUILDROOT/mypublicip\-0.0.1\-1.x86_64/usr/lib/python2.7/site\-packages/mypublicip/util/logger.py to logger.pyc
+byte\-compiling /home/eduardo/git/mypublicip/rpmbuild/BUILDROOT/mypublicip\-0.0.1\-1.x86_64/usr/lib/python2.7/site\-packages/mypublicip/__init__.py to __init__.pyc
+byte\-compiling /home/eduardo/git/mypublicip/rpmbuild/BUILDROOT/mypublicip\-0.0.1\-1.x86_64/usr/lib/python2.7/site\-packages/mypublicip/action.py to action.pyc
+byte\-compiling /home/eduardo/git/mypublicip/rpmbuild/BUILDROOT/mypublicip\-0.0.1\-1.x86_64/usr/lib/python2.7/site\-packages/mypublicip/notifier/__init__.py to __init__.pyc
+byte\-compiling /home/eduardo/git/mypublicip/rpmbuild/BUILDROOT/mypublicip\-0.0.1\-1.x86_64/usr/lib/python2.7/site\-packages/mypublicip/notifier/smtp/__init__.py to __init__.pyc
+writing byte\-compilation script \(aq/tmp/tmpn3tx9P.py\(aq
+/usr/bin/python \-O /tmp/tmpn3tx9P.py
+removing /tmp/tmpn3tx9P.py
+running install_egg_info
+running egg_info
+writing requirements to mypublicip.egg\-info/requires.txt
+writing mypublicip.egg\-info/PKG\-INFO
+writing top\-level names to mypublicip.egg\-info/top_level.txt
+writing dependency_links to mypublicip.egg\-info/dependency_links.txt
+writing entry points to mypublicip.egg\-info/entry_points.txt
+reading manifest file \(aqmypublicip.egg\-info/SOURCES.txt\(aq
+reading manifest template \(aqMANIFEST.in\(aq
+warning: no files found matching \(aqdocs/build/man/mypublicip.1\(aq
+warning: no previously\-included files matching \(aq*\(aq found under directory \(aqtests\(aq
+warning: no previously\-included files matching \(aq__pycache__\(aq found under directory \(aq*\(aq
+warning: no previously\-included files matching \(aq\fI\&.orig\(aq found under directory \(aq\fP\(aq
+warning: no previously\-included files matching \(aq*\(aq found under directory \(aqdocs\(aq
+warning: no previously\-included files matching \(aq.pyc\(aq found anywhere in distribution
+warning: no previously\-included files matching \(aq.pyo\(aq found anywhere in distribution
+writing manifest file \(aqmypublicip.egg\-info/SOURCES.txt\(aq
+Copying mypublicip.egg\-info to /home/eduardo/git/mypublicip/rpmbuild/BUILDROOT/mypublicip\-0.0.1\-1.x86_64/usr/lib/python2.7/site\-packages/mypublicip\-0\-py2.7.egg\-info
+running install_scripts
+Installing mypublicip script to /home/eduardo/git/mypublicip/rpmbuild/BUILDROOT/mypublicip\-0.0.1\-1.x86_64/usr/bin
++ mkdir \-p /home/eduardo/git/mypublicip/rpmbuild/BUILDROOT/mypublicip\-0.0.1\-1.x86_64//usr/share/man/man1
++ cp mypublicip.1 /home/eduardo/git/mypublicip/rpmbuild/BUILDROOT/mypublicip\-0.0.1\-1.x86_64//usr/share/man/man1/mypublicip.1
++ /usr/lib/rpm/check\-buildroot
++ /usr/lib/rpm/brp\-compress
++ /usr/lib/rpm/brp\-strip /usr/bin/strip
++ /usr/lib/rpm/brp\-strip\-comment\-note /usr/bin/strip /usr/bin/objdump
++ /usr/lib/rpm/brp\-strip\-static\-archive /usr/bin/strip
++ /usr/lib/rpm/brp\-python\-bytecompile /usr/bin/python 1
+Bytecompiling .py files below /home/eduardo/git/mypublicip/rpmbuild/BUILDROOT/mypublicip\-0.0.1\-1.x86_64/usr/lib/python2.7 using /usr/bin/python2.7
++ /usr/lib/rpm/brp\-python\-hardlink
++ /usr/lib/rpm/redhat/brp\-java\-repack\-jars
+Processing files: mypublicip\-0.0.1\-1.x86_64
+Executing(%doc): /bin/sh \-e /var/tmp/rpm\-tmp.g5HLOz
++ umask 022
++ cd /home/eduardo/git/mypublicip/rpmbuild/BUILD
++ cd mypublicip
++ DOCDIR=/home/eduardo/git/mypublicip/rpmbuild/BUILDROOT/mypublicip\-0.0.1\-1.x86_64/usr/share/doc/mypublicip
++ export DOCDIR
++ /usr/bin/mkdir \-p /home/eduardo/git/mypublicip/rpmbuild/BUILDROOT/mypublicip\-0.0.1\-1.x86_64/usr/share/doc/mypublicip
++ cp \-pr README.md /home/eduardo/git/mypublicip/rpmbuild/BUILDROOT/mypublicip\-0.0.1\-1.x86_64/usr/share/doc/mypublicip
++ cp \-pr AUTHORS /home/eduardo/git/mypublicip/rpmbuild/BUILDROOT/mypublicip\-0.0.1\-1.x86_64/usr/share/doc/mypublicip
++ exit 0
+Provides: mypublicip = 0.0.1\-1 mypublicip(x86\-64) = 0.0.1\-1
+Requires(rpmlib): rpmlib(CompressedFileNames) <= 3.0.4\-1 rpmlib(FileDigests) <= 4.6.0\-1 rpmlib(PartialHardlinkSets) <= 4.0.4\-1 rpmlib(PayloadFilesHavePrefix) <= 4.0\-1
+Requires: /usr/bin/python python(abi) = 2.7
+Checking for unpackaged file(s): /usr/lib/rpm/check\-files /home/eduardo/git/mypublicip/rpmbuild/BUILDROOT/mypublicip\-0.0.1\-1.x86_64
+Wrote: /home/eduardo/git/mypublicip/rpmbuild/RPMS/x86_64/mypublicip\-0.0.1\-1.x86_64.rpm
+Executing(%clean): /bin/sh \-e /var/tmp/rpm\-tmp.RZCnOO
++ umask 022
++ cd /home/eduardo/git/mypublicip/rpmbuild/BUILD
++ cd mypublicip
++ /usr/bin/rm \-rf /home/eduardo/git/mypublicip/rpmbuild/BUILDROOT/mypublicip\-0.0.1\-1.x86_64
++ exit 0
+Executing(\-\-clean): /bin/sh \-e /var/tmp/rpm\-tmp.nUzwO3
++ umask 022
++ cd /home/eduardo/git/mypublicip/rpmbuild/BUILD
++ rm \-rf mypublicip
++ exit 0
+.UNINDENT
+.UNINDENT
+.SS Copr
+.INDENT 0.0
+.INDENT 3.5
+.sp
+\fBNOTE:\fP
+.INDENT 0.0
+.INDENT 3.5
+Before doing any release, make sure that you have account on both sites and also make sure that you could
+access to your fedorapeople space [1] and have enough permissions [2] to build \fImypublicip\fP in \fICopr\fP\&.
+.sp
+You need to create a directory called \fImypublicip_srpms/\fP under your fedorapeople space \fIpublic_html/\fP to hold all the uploaded
+srpms.
+.sp
+\fIcopr\-cli\fP will be used, installed by \fIsudo yum/dnf install copr\-cli\fP and configure it. [3]
+.UNINDENT
+.UNINDENT
+.UNINDENT
+.UNINDENT
+.sp
+Currently there are two projects in \fICopr\fP: \fImypublicip\fP for all tag based releases and \fImypublicip\-test\fP for test builds. We have two
+release targets in \fItito\fP, \fIcopr\-mypublicip\fP is for \fImypublicip\fP in \fICopr\fP and \fIcopr\-mypublicip\-test\fP is for \fImypublicip\-test\fP respectively.
+.sp
+Request as \fIBuilder\fP for projects \fImypublicip/mypublicip\-test\fP and \fImypublicip/mypublicip\fP, wait until admin approves.
+.sp
+After all setup, release with \fItito\fP:
+.INDENT 0.0
+.INDENT 3.5
+.sp
+.nf
+.ft C
+$ tito release copr\-mypublicip
+# or
+$ tito release copr\-mypublicip\-test
+.ft P
+.fi
+.UNINDENT
+.UNINDENT
+.sp
+Go and grab a cup of tea or coffee, the release build will be come out soon
+.INDENT 0.0
+.INDENT 3.5
+.sp
+.nf
+.ft C
+# test builds: \(gahttps://copr.fedoraproject.org/coprs/mypublicip/mypublicip\-test/builds/\(ga
+# tag based builds: \(gahttps://copr.fedoraproject.org/coprs/mypublicip/mypublicip/builds/\(ga
+.ft P
+.fi
+.UNINDENT
+.UNINDENT
+.IP [1] 5
+\fI\%https://fedorahosted.org/copr/wiki/HowToEnableRepo\fP
+.IP [2] 5
+\fI\%http://fedoraproject.org/wiki/Infrastructure/fedorapeople.org#Accessing_Your_fedorapeople.org_Space\fP
+.IP [3] 5
+\fI\%https://fedorahosted.org/copr/wiki/UserDocs#CanIgiveaccesstomyrepotomyteammate\fP
+.IP [4] 5
+\fI\%https://copr.fedoraproject.org/api/\fP
+.INDENT 0.0
+.IP \(bu 2
+genindex
+.IP \(bu 2
+search
+.UNINDENT
+.SH AUTHOR
+mypublicip Devel Team
+.SH COPYRIGHT
+2014-2015, mypublicip Devel Team
+.\" Generated by docutils manpage writer.
+.

@@ -1,0 +1,4 @@
+flake8
+documentation
+push to git
+add to copr
