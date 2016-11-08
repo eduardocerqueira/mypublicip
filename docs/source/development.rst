@@ -10,7 +10,7 @@ Source Code
 
 ::
 
-    $ git clone https://github.com/eduardocerqueira/mypublicip.git
+	$ git clone https://github.com/eduardocerqueira/mypublicip.git
 
 
 Installation

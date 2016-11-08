@@ -32,6 +32,8 @@ level margin: \\n[rst2man-indent\\n[rst2man-indent-level]]
 ..
 .sp
 Contents:
+.SH INSTALL
+.SH GUIDE
 .SH SETUP DEVELOPMENT ENVIRONMENT
 .SS Source Code
 .INDENT 0.0
@@ -119,11 +121,16 @@ $ mypublicip \-\-help
 .SS From your local machine
 .INDENT 0.0
 .INDENT 3.5
+.INDENT 0.0
+.INDENT 3.5
+.sp
+.nf
+.ft C
 $ cd mypublicip
 $ make
-.sp
+
 Usage: make <target> where <target> is one of
-.sp
+
 clean     clean temp files from local workspace
 doc       generate sphinx documentation and man pages
 test      run unit tests locally
@@ -132,9 +139,10 @@ rpm       build source codes and generate rpm file
 srpm      generate SRPM file
 all       clean test doc rpm
 flake8    check Python style based on flake8
-.sp
+
+
 $ make rpm
-.sp
+
 #rpmdev\-setuptree into project folder
 make \-C docs/ html
 make[1]: Entering directory \(aq/home/eduardo/git/mypublicip/docs\(aq
@@ -146,7 +154,9 @@ building [html]: targets for 2 source files that are out of date
 updating environment: 1 added, 2 changed, 1 removed
 reading sources... [100%] index
 /home/eduardo/git/mypublicip/docs/source/index.rst:4: WARNING: Title underline too short.
-.sp
+
+Welcome to mypublicip\(aqs documentation!
+===============================
 /home/eduardo/git/mypublicip/docs/source/index.rst:8: WARNING: toctree contains reference to nonexisting document u\(aqinstall\(aq
 /home/eduardo/git/mypublicip/docs/source/index.rst:8: WARNING: toctree contains reference to nonexisting document u\(aqguide\(aq
 looking for now\-outdated files... none found
@@ -162,7 +172,7 @@ copying extra files... done
 dumping search index in English (code: en) ... done
 dumping object inventory... done
 build succeeded, 4 warnings.
-.sp
+
 Build finished. The HTML pages are in build/html.
 make[1]: Leaving directory \(aq/home/eduardo/git/mypublicip/docs\(aq
 make \-C docs/ man
@@ -175,7 +185,9 @@ building [man]: all manpages
 updating environment: 0 added, 1 changed, 0 removed
 reading sources... [100%] index
 /home/eduardo/git/mypublicip/docs/source/index.rst:4: WARNING: Title underline too short.
-.sp
+
+Welcome to mypublicip\(aqs documentation!
+===============================
 /home/eduardo/git/mypublicip/docs/source/index.rst:8: WARNING: toctree contains reference to nonexisting document u\(aqinstall\(aq
 /home/eduardo/git/mypublicip/docs/source/index.rst:8: WARNING: toctree contains reference to nonexisting document u\(aqguide\(aq
 looking for now\-outdated files... none found
@@ -183,28 +195,21 @@ pickling environment... done
 checking consistency... done
 writing... mypublicip.1 { development build }
 build succeeded, 3 warnings.
-.sp
+
 Build finished. The manual pages are in build/man.
 make[1]: Leaving directory \(aq/home/eduardo/git/mypublicip/docs\(aq
 cp docs/build/man/mypublicip.1 mypublicip.1
-sed 
-.INDENT 0.0
-.INDENT 3.5
-\-e \(aqs/@RPM_VERSION@/0.0.1/g\(aq \-e \(aqs/@RPM_RELEASE@/1/g\(aq < mypublicip.spec.in > /home/eduardo/git/mypublicip/rpmbuild/SPECS/mypublicip.spec
-.UNINDENT
-.UNINDENT
-.sp
-git ls\-files | tar \-\-transform=\(aqs|^|mypublicip/
-.nf
-|
-.fi
-\(aq \-\-files\-from /proc/self/fd/0 \-czf /home/eduardo/git/mypublicip/rpmbuild/SOURCES/mypublicip\-0.0.1.tar.gz /home/eduardo/git/mypublicip/rpmbuild/SPECS/mypublicip.spec
-tar: Removing leading 
-.nf
-\(ga
-.fi
-/\(aq from member names
-rpmbuild \-\-define="_topdir /home/eduardo/git/mypublicip/rpmbuild" \-\-define "_specdir /home/eduardo/git/mypublicip/rpmbuild/SPECS" \-ts /home/eduardo/git/mypublicip/rpmbuild/SOURCES/mypublicip\-0.0.1.tar.gz
+sed \e
+        \-e \(aqs/@RPM_VERSION@/0.0.1/g\(aq \e
+        \-e \(aqs/@RPM_RELEASE@/1/g\(aq \e
+        < mypublicip.spec.in \e
+        > /home/eduardo/git/mypublicip/rpmbuild/SPECS/mypublicip.spec
+git ls\-files | tar \-\-transform=\(aqs|^|mypublicip/|\(aq \e
+\-\-files\-from /proc/self/fd/0 \e
+\-czf /home/eduardo/git/mypublicip/rpmbuild/SOURCES/mypublicip\-0.0.1.tar.gz /home/eduardo/git/mypublicip/rpmbuild/SPECS/mypublicip.spec
+tar: Removing leading \(ga/\(aq from member names
+rpmbuild \-\-define="_topdir /home/eduardo/git/mypublicip/rpmbuild" \-\-define "_specdir /home/eduardo/git/mypublicip/rpmbuild/SPECS" \e
+\-ts /home/eduardo/git/mypublicip/rpmbuild/SOURCES/mypublicip\-0.0.1.tar.gz
 Wrote: /home/eduardo/git/mypublicip/rpmbuild/SRPMS/mypublicip\-0.0.1\-1.src.rpm
 rpmbuild \-\-define="_topdir /home/eduardo/git/mypublicip/rpmbuild" \-\-rebuild /home/eduardo/git/mypublicip/rpmbuild/SRPMS/mypublicip\-0.0.1\-1.src.rpm
 Installing /home/eduardo/git/mypublicip/rpmbuild/SRPMS/mypublicip\-0.0.1\-1.src.rpm
@@ -253,7 +258,7 @@ reading manifest template \(aqMANIFEST.in\(aq
 warning: no files found matching \(aqdocs/build/man/mypublicip.1\(aq
 warning: no previously\-included files matching \(aq*\(aq found under directory \(aqtests\(aq
 warning: no previously\-included files matching \(aq__pycache__\(aq found under directory \(aq*\(aq
-warning: no previously\-included files matching \(aq\fI\&.orig\(aq found under directory \(aq\fP\(aq
+warning: no previously\-included files matching \(aq*.orig\(aq found under directory \(aq*\(aq
 warning: no previously\-included files matching \(aq*\(aq found under directory \(aqdocs\(aq
 warning: no previously\-included files matching \(aq.pyc\(aq found anywhere in distribution
 warning: no previously\-included files matching \(aq.pyo\(aq found anywhere in distribution
@@ -308,7 +313,7 @@ reading manifest template \(aqMANIFEST.in\(aq
 warning: no files found matching \(aqdocs/build/man/mypublicip.1\(aq
 warning: no previously\-included files matching \(aq*\(aq found under directory \(aqtests\(aq
 warning: no previously\-included files matching \(aq__pycache__\(aq found under directory \(aq*\(aq
-warning: no previously\-included files matching \(aq\fI\&.orig\(aq found under directory \(aq\fP\(aq
+warning: no previously\-included files matching \(aq*.orig\(aq found under directory \(aq*\(aq
 warning: no previously\-included files matching \(aq*\(aq found under directory \(aqdocs\(aq
 warning: no previously\-included files matching \(aq.pyc\(aq found anywhere in distribution
 warning: no previously\-included files matching \(aq.pyo\(aq found anywhere in distribution
@@ -354,6 +359,10 @@ Executing(\-\-clean): /bin/sh \-e /var/tmp/rpm\-tmp.nUzwO3
 + cd /home/eduardo/git/mypublicip/rpmbuild/BUILD
 + rm \-rf mypublicip
 + exit 0
+.ft P
+.fi
+.UNINDENT
+.UNINDENT
 .UNINDENT
 .UNINDENT
 .SS Copr
@@ -365,9 +374,21 @@ Executing(\-\-clean): /bin/sh \-e /var/tmp/rpm\-tmp.nUzwO3
 .INDENT 3.5
 Before doing any release, make sure that you have account on both sites and also make sure that you could
 access to your fedorapeople space [1] and have enough permissions [2] to build \fImypublicip\fP in \fICopr\fP\&.
-.sp
-You need to create a directory called \fImypublicip_srpms/\fP under your fedorapeople space \fIpublic_html/\fP to hold all the uploaded
-srpms.
+.INDENT 0.0
+.INDENT 3.5
+.INDENT 0.0
+.INDENT 3.5
+$ make srpm
+.UNINDENT
+.UNINDENT
+.INDENT 0.0
+.IP 1. 3
+copy rpmbuild/SRPMS/mypublicip\-0.0.1\-1.src.rpm to mypublicip/copr
+.IP 2. 3
+push mypulibip/copr to github
+.UNINDENT
+.UNINDENT
+.UNINDENT
 .sp
 \fIcopr\-cli\fP will be used, installed by \fIsudo yum/dnf install copr\-cli\fP and configure it. [3]
 .UNINDENT
@@ -375,24 +396,9 @@ srpms.
 .UNINDENT
 .UNINDENT
 .sp
-Currently there are two projects in \fICopr\fP: \fImypublicip\fP for all tag based releases and \fImypublicip\-test\fP for test builds. We have two
-release targets in \fItito\fP, \fIcopr\-mypublicip\fP is for \fImypublicip\fP in \fICopr\fP and \fIcopr\-mypublicip\-test\fP is for \fImypublicip\-test\fP respectively.
+Request as \fIBuilder\fP for projects \fImypublicip\fP, wait until admin approves.
 .sp
-Request as \fIBuilder\fP for projects \fImypublicip/mypublicip\-test\fP and \fImypublicip/mypublicip\fP, wait until admin approves.
-.sp
-After all setup, release with \fItito\fP:
-.INDENT 0.0
-.INDENT 3.5
-.sp
-.nf
-.ft C
-$ tito release copr\-mypublicip
-# or
-$ tito release copr\-mypublicip\-test
-.ft P
-.fi
-.UNINDENT
-.UNINDENT
+$ copr\-cli build mypublicip \fI\%https://github.com/eduardocerqueira/mypublicip/raw/master/copr/mypublicip\-0.0.1\-1.src.rpm\fP
 .sp
 Go and grab a cup of tea or coffee, the release build will be come out soon
 .INDENT 0.0
@@ -400,8 +406,7 @@ Go and grab a cup of tea or coffee, the release build will be come out soon
 .sp
 .nf
 .ft C
-# test builds: \(gahttps://copr.fedoraproject.org/coprs/mypublicip/mypublicip\-test/builds/\(ga
-# tag based builds: \(gahttps://copr.fedoraproject.org/coprs/mypublicip/mypublicip/builds/\(ga
+# tag based builds: \(gahttps://copr.fedorainfracloud.org/coprs/eduardocerqueira/mypublicip/builds/\(ga
 .ft P
 .fi
 .UNINDENT

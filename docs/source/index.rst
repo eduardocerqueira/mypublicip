@@ -9,11 +9,10 @@ Contents:
    :maxdepth: 3
    :numbered:
 
-   development
-   build
    install
    guide
-
+   development
+   build
 
 Indices and tables
 ==================

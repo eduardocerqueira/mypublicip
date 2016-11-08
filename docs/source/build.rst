@@ -7,6 +7,8 @@ Build
 From your local machine
 -----------------------
 
+ ::
+
 	$ cd mypublicip
 	$ make
 
