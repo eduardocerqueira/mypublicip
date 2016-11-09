@@ -1,3 +1,5 @@
+https://copr.fedorainfracloud.org/coprs/eduardocerqueira/mypublicip/package/mypublicip/status_image/last_build.png
+
 # mypublicip
 
 Goal: let you know whenever your public IP is renewed/changed.
