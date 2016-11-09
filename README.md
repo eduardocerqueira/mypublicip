@@ -1,4 +1,4 @@
-https://copr.fedorainfracloud.org/coprs/eduardocerqueira/mypublicip/package/mypublicip/status_image/last_build.png
+![copr build](https://copr.fedorainfracloud.org/coprs/eduardocerqueira/mypublicip/package/mypublicip/status_image/last_build.png)
 
 # mypublicip
 
