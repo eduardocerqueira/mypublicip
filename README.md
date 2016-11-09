@@ -91,7 +91,7 @@ Help or non args:
 show ( non verbose )
 
 	[eduardo@dev ~]$ mypublicip --show
-	2016-11-07 23:22:24,015 INFO [mypublicip.action.show:147] my public IP: 96.252.122.219
+	2016-11-07 23:22:24,015 INFO [mypublicip.action.show:147] my public IP: 96.252.122.123
 
 compare ( non verbose )
 
