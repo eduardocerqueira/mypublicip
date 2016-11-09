@@ -44,8 +44,9 @@ class Email(object):
         msg['From'] = fromaddr
         msg['To'] = str(mail_to)
         msg['Subject'] = self.my_conf.get('EMAIL', 'subject')
-
-        body = "%s \n %s" % (self.my_conf.get('EMAIL', 'body'), self.ip)
+        
+        bottom = "sent by mypublicip, https://github.com/eduardocerqueira/mypublicip"
+        body = "%s %s \n\n\n\n %s" % (self.my_conf.get('EMAIL', 'body'), self.ip, bottom)
         msg.attach(MIMEText(body, 'plain'))
 
         server = smtplib.SMTP(self.my_conf.get('SMTP', 'server'), self.my_conf.get('SMTP', 'port'))
