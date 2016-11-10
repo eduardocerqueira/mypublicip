@@ -136,6 +136,11 @@ compare ( non verbose ) after my IP has been renewed and email sent
 	2016-11-07 23:30:29,119 INFO [mypublicip.action.save_history:122] new IP saved in /home/eduardo/.mypublicip/history.txt
 	2016-11-07 23:30:31,138 INFO [mypublicip.notifier.smtp.send:56] email sent to ['eduardomcerqueira@gmail.com']
 
+sample of an email received after my public IP was renewed:
+
+![Preview](https://github.com/eduardocerqueira/mypublicip/raw/master/docs/source/_static/email_example.png)
+
+
 3. These files will be created at your /home/user/.mypublicip
 
  * .ip.txt	: save your current public ip
